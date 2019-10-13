@@ -16,7 +16,7 @@ let cactus_image = new Image()
 cactus_image.src = "Images/cactus.png"
 document.addEventListener('keydown', e => {
   if (e.keyCode == 32) {
-    dino.y = 300
+    dino.y = 250
     let change = setTimeout(() => {
       dino.y = 350
     }, 500)
@@ -40,7 +40,7 @@ const moving = setInterval(() => {
     ctx.lineWidth = 2
     ctx.beginPath()
     ctx.moveTo(0, 450)
-    ctx.lineTo(1440, 450)
+    ctx.lineTo(dimensions.width, 450)
     ctx.stroke()
 
     if (dino.x == 1200) {
@@ -52,11 +52,12 @@ const moving = setInterval(() => {
     }
 
     for (let cactus of cacti) {
-      if (dino.x == cactus.x+100 && dino.y == 350) {
+      if (dino.x > cactus.x + 75 && dino.x < cactus.x + 125 && dino.y == 350) {
+        console.log(dino.y)
         clearInterval(moving)
         dead = true
         alert(`YOU DIED! Your distance was ${dino.distance}`)
       }
     }
 
-}, 15)
+}, 12)
