@@ -16,9 +16,19 @@ let cactus_image = new Image()
 cactus_image.src = "Images/cactus.png"
 document.addEventListener('keydown', e => {
   if (e.keyCode == 32) {
-    dino.y = 250
-    let change = setTimeout(() => {
-      dino.y = 350
+    let moveup = setInterval(() => {
+    dino.y -= 5
+      if (dino.y == 250) {
+        clearInterval(moveup)
+      }
+    }, 1)
+    let resume = setTimeout(() => {
+      let moveup = setInterval(() => {
+      dino.y += 5
+        if (dino.y == 350) {
+          clearInterval(moveup)
+        }
+      }, 1)
     }, 500)
   }
 })
@@ -31,7 +41,7 @@ const moving = setInterval(() => {
 
     dino.distance += 1
 
-    cacti.push(new Cactus(cacti[cacti.length-1].x + Math.round(Math.random() * 300) + 300))
+    cacti.push(new Cactus(cacti[cacti.length-1].x + Math.round(Math.random() * 350) + 350))
     ctx.fillStyle = "lightgrey"
     ctx.fillRect(0, 0, dimensions.width, dimensions.height)
     ctx.drawImage(dino_image, dino.x, dino.y);
