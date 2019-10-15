@@ -9,13 +9,15 @@ let ctx = canvas.getContext('2d')
 let dino = new Dinosaur(100, 350, 0)
 let cacti = [new Cactus(340), new Cactus(640), new Cactus(940)]
 let dead = false
+let active = false
 
 let dino_image = new Image()
 dino_image.src = "Images/dinosaur.png"
 let cactus_image = new Image()
 cactus_image.src = "Images/cactus.png"
 document.addEventListener('keydown', e => {
-  if (e.keyCode == 32) {
+  if (e.keyCode == 32 && active == false) {
+    active = true
     let moveup = setInterval(() => {
     dino.y -= 5
       if (dino.y == 250) {
@@ -27,6 +29,7 @@ document.addEventListener('keydown', e => {
       dino.y += 5
         if (dino.y == 350) {
           clearInterval(moveup)
+          active = false
         }
       }, 1)
     }, 500)
